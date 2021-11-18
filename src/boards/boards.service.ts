@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { Board } from './board.model';
 
 @Injectable()
 export class BoardsService {
-  private boards = [];
+  private boards: Board[] = [];
 
   //모든 게시글을 가져오는 메소드
-  getAllBoards() {
+  getAllBoards(): Board[] {
     return this.boards;
   }
 }
