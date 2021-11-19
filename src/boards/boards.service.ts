@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
 import { v1 as uuid } from 'uuid';
+import { CreateBoardDto } from './dto/create-board.dto';
 
 @Injectable()
 export class BoardsService {
@@ -11,7 +12,8 @@ export class BoardsService {
     return this.boards;
   }
 
-  createBoard(title: string, description: string) {
+  createBoard(createBoardDto: CreateBoardDto) {
+    const { title, description } = createBoardDto;
     const board: Board = {
       //원래는 디비가 자동 생성해주지만 지금은 로컬에서 테스트할거야 랜덤아이디 생성용 uuid임
       id: uuid(),
