@@ -12,6 +12,7 @@ export class BoardsService {
     return this.boards;
   }
 
+  //게시물 생성 메소드
   createBoard(createBoardDto: CreateBoardDto) {
     const { title, description } = createBoardDto;
     const board: Board = {
@@ -26,7 +27,13 @@ export class BoardsService {
     return board;
   }
 
+  //특정 게시물 찾는 메소드
   getBoardById(id: string): Board {
     return this.boards.find((board) => board.id === id);
+  }
+
+  //특정 게시물을 지우는 메소드
+  deleteBoard(id: string): void {
+    this.boards = this.boards.filter((board) => board.id !== id);
   }
 }
