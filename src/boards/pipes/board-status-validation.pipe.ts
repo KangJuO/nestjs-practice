@@ -8,7 +8,8 @@ import { BoardStatus } from '../board.model';
 export class BoardStatusValidationPipe implements PipeTransform {
   readonly StatusOption = [BoardStatus.PRIVATE, BoardStatus.PUBLIC];
 
-  transform(value: any, metadata: ArgumentMetadata) {
+  transform(value: any) {
+    // 두번쨰 인자로 metadata: ArgumentMetadata
     value = value.toUpperCase();
 
     if (!this.isStatusValid(value)) {

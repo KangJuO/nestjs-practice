@@ -3,7 +3,7 @@ import { BoardStatus } from './board.model';
 
 export class Board extends BaseEntity {
   @PrimaryGeneratedColumn()
-  if: number;
+  id: number;
 
   @Column()
   title: string;
