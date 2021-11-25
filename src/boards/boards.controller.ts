@@ -14,7 +14,7 @@ import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 
-//비즈니스 로직 처리를 위한 앤드포인트 라우팅
+//비즈니스 로직 처리를 위함, 서비스에서 제공하는 메소드를 사용해서 응답
 @Controller('boards')
 export class BoardsController {
   constructor(private boardsService: BoardsService) {}
