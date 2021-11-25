@@ -3,6 +3,8 @@ import { Board, BoardStatus } from './board.model';
 import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create-board.dto';
 
+// 라우팅 후 비즈니스 로직 처리를 여기서 수행함
+// DB처리는 레포지토리 패턴으로 처리
 @Injectable()
 export class BoardsService {
   private boards: Board[] = [];
