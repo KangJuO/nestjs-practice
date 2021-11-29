@@ -3,6 +3,7 @@ import { BoardStatus } from './board-status.enum';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardRepository } from './board.repository';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Board } from './board.entity';
 
 // 라우팅 후 비즈니스 로직을 제공
 // DB처리는 레포지토리 패턴으로 처리
@@ -30,13 +31,16 @@ export class BoardsService {
   //   return board;
   // }
   // //특정 게시물 찾는 메소드
-  // getBoardById(id: string): Board {
-  //   const found = this.boards.find((board) => board.id === id);
-  //   if (!found) {
-  //     throw new NotFoundException(`Can't find Board with id ${id}`);
-  //   }
-  //   return found;
-  // }
+  async getBoardById(id: number): Promise<Board> {
+    const found = await this.boardRepository.findOne(id);
+
+    if (!found) {
+      throw new NotFoundException(`Can't find Board with id ${id}`);
+    }
+
+    return found;
+  }
+
   // //특정 게시물을 지우는 메소드
   // deleteBoard(id: string): void {
   //   const found = this.getBoardById(id);
