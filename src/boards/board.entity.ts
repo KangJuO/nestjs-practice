@@ -1,5 +1,5 @@
 import { BaseEntity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { BoardStatus } from './board.model';
+import { BoardStatus } from './board-status.enum';
 
 //DB의 스키마 정의
 export class Board extends BaseEntity {
