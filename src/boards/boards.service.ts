@@ -17,20 +17,22 @@ export class BoardsService {
   // getAllBoards(): Board[] {
   //   return this.boards;
   // }
-  // //게시물 생성 메소드
-  // createBoard(createBoardDto: CreateBoardDto) {
-  //   const { title, description } = createBoardDto;
-  //   const board: Board = {
-  //     //원래는 디비가 자동 생성해주지만 지금은 로컬에서 테스트할거야 랜덤아이디 생성용 uuid임
-  //     id: uuid(),
-  //     title,
-  //     description,
-  //     status: BoardStatus.PUBLIC,
-  //   };
-  //   this.boards.push(board);
-  //   return board;
-  // }
-  // //특정 게시물 찾는 메소드
+  //게시물 생성 메소드
+  async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
+    const { title, description } = createBoardDto;
+
+    const board = this.boardRepository.create({
+      title,
+      description,
+      status: BoardStatus.PUBLIC,
+    });
+
+    await this.boardRepository.save(board);
+
+    return board;
+  }
+
+  //특정 게시물 찾는 메소드
   async getBoardById(id: number): Promise<Board> {
     const found = await this.boardRepository.findOne(id);
 

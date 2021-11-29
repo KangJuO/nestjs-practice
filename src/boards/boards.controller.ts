@@ -24,12 +24,13 @@ export class BoardsController {
   // getAllBoard(): Board[] {
   //   return this.boardsService.getAllBoards();
   // }
-  // //게시물을 생성하는 핸들러
-  // @Post('/')
-  // @UsePipes(ValidationPipe)
-  // createBoard(@Body() createBoardDto: CreateBoardDto): Board {
-  //   return this.boardsService.createBoard(createBoardDto);
-  // }
+  //게시물을 생성하는 핸들러
+  @Post()
+  @UsePipes(ValidationPipe)
+  createBoard(@Body() CreateBoardDto: CreateBoardDto): Promise<Board> {
+    return this.boardsService.createBoard(CreateBoardDto);
+  }
+
   // //특정 게시물을 가져오는 핸들러
   @Get('/:id')
   getBoardById(@Param('id') id: number): Promise<Board> {
