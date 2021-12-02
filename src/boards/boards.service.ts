@@ -13,10 +13,12 @@ export class BoardsService {
     @InjectRepository(BoardRepository)
     private boardRepository: BoardRepository,
   ) {}
+
   // //모든 게시글을 가져오는 메소드
   // getAllBoards(): Board[] {
   //   return this.boards;
   // }
+
   //게시물 생성 메소드
   createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
     return this.boardRepository.createBoard(createBoardDto);
@@ -34,10 +36,13 @@ export class BoardsService {
   }
 
   // //특정 게시물을 지우는 메소드
-  // deleteBoard(id: string): void {
-  //   const found = this.getBoardById(id);
-  //   this.boards = this.boards.filter((board) => board.id !== found.id);
-  // }
+  async deleteBoatd(id: number): Promise<void> {
+    const result = await this.boardRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Can't find Board with id ${id}`);
+    }
+  }
   // updateBoardStatus(id: string, status: BoardStatus): Board {
   //   const board = this.getBoardById(id);
   //   board.status = status;
