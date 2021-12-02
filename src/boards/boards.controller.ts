@@ -20,11 +20,13 @@ import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe'
 @Controller('boards')
 export class BoardsController {
   constructor(private boardsService: BoardsService) {}
+
   //모든 게시글을 가져오는 핸들러
-  // @Get('/')
-  // getAllBoard(): Board[] {
-  //   return this.boardsService.getAllBoards();
-  // }
+  @Get()
+  getAllBoard(): Promise<Board[]> {
+    return this.boardsService.getAllBoards();
+  }
+
   //게시물을 생성하는 핸들러
   @Post()
   @UsePipes(ValidationPipe)

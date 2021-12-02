@@ -15,9 +15,9 @@ export class BoardsService {
   ) {}
 
   //모든 게시글을 가져오는 메소드
-  // getAllBoards(): Board[] {
-  //   return this.boards;
-  // }
+  async getAllBoards(): Promise<Board[]> {
+    return this.boardRepository.find();
+  }
 
   //게시물 생성 메소드
   createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
