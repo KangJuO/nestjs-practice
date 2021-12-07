@@ -28,8 +28,8 @@ export class BoardsController {
 
   //모든 게시글을 가져오는 핸들러
   @Get()
-  getAllBoard(): Promise<Board[]> {
-    return this.boardsService.getAllBoards();
+  getAllBoard(@GetUser() user: User): Promise<Board[]> {
+    return this.boardsService.getAllBoards(user);
   }
 
   //게시물을 생성하는 핸들러
