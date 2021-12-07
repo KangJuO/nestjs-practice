@@ -43,8 +43,8 @@ export class BoardsService {
   }
 
   //특정 게시물을 지우는 메소드
-  async deleteBoatd(id: number): Promise<void> {
-    const result = await this.boardRepository.delete(id);
+  async deleteBoatd(id: number, user: User): Promise<void> {
+    const result = await this.boardRepository.delete({ id, user });
 
     if (result.affected === 0) {
       throw new NotFoundException(`Can't find Board with id ${id}`);
